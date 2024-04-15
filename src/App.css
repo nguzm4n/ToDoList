@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    background-color: hsl(160, 83%, 57%);
+    font-family: Lato, sans-serif;
+    margin-top: 40px;
+  }
+
+h1 {
+    text-align: center;
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: hsl(160, 83%, 57%);
+    border: 1px solid blue;
+    
+}
+
+.contenedor-principal {
+    width: 600px;
+    min-height: 500px;
+    background-color: rgb(140, 46, 228);
+    padding: 25px;
+    margin: 10x;
+    border-radius: 26px;
+}
