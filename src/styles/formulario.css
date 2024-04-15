@@ -1,0 +1,16 @@
+.form-task {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-task {
+    min-width: 450px;
+    height: 60px;
+    font-size: 30px;
+    background-color: white;
+    padding: 15px;  
+    border-radius: 25px;
+    border: 2px solid black;
+}

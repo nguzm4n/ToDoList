@@ -1,0 +1,23 @@
+.task-container {
+    width: 600px;
+    min-height: 65px;
+    background-color: hsl(240, 29%, 95%);
+    margin: 5px 0;
+    padding: 8px 15px 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 7px;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.delete-icon {
+    font-size: 22px;
+    opacity: 0;
+    transition: opacity 0.1s ease; 
+  }
+  
+  .task-container:hover .delete-icon {
+    opacity: 1; 
+  }
