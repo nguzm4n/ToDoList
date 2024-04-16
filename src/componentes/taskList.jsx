@@ -85,8 +85,8 @@ const TaskList = () => {
             text={task.label}
             deleteTask={borrarTarea}
           />
-        ))}
-        <h2>{`Tienes ${tareas?.length || 0} tareas pendientes `}</h2>
+        ))}{tareas.length == 1 ? <h2>You Have 1 Pending Task</h2> :<h2>{`You Have ${tareas?.length || 0} Pending Tasks`}</h2> }
+        
       </div>
     </>
   )
