@@ -46,7 +46,7 @@ const TaskList = () => {
         setTareas([...tareas, datos]);
       })
       .catch(error => console.error('Error al agregar tarea:', error));
-
+      setCounter(counter + 1)
   };
 
 
@@ -67,8 +67,8 @@ const TaskList = () => {
           setTareas(updatedTasks);
         }
       })
-
       .catch(error => console.error('Error al eliminar tarea:', error));
+      setCounter(counter - 1)
   };
 
 
@@ -86,6 +86,7 @@ const TaskList = () => {
             deleteTask={borrarTarea}
           />
         ))}
+        <h2>{`Tienes ${tareas?.length || 0} tareas pendientes `}</h2>
       </div>
     </>
   )
