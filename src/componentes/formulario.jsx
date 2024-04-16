@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import '../styles/formulario.css'
 
 const Formulario = ({ sendInput }) => {
@@ -17,10 +16,10 @@ const Formulario = ({ sendInput }) => {
     e.preventDefault()
 
     const task = {
-      id: uuidv4(),
       text: input,
     }
     sendInput(task)
+    setInput("")
     
 
   }
