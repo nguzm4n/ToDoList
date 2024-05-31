@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Formulario from './formulario'
 import Task from './task'
 import '../styles/taskList.css'
+import { FaTrashAlt } from "react-icons/fa";
 
 const TaskList = () => {
 
   const [tareas, setTareas] = useState([]);
+  const [user, setUser] = useState('')
 
   const getTasks = () => {
     const url = 'https://playground.4geeks.com/todo/users/nicolas'
@@ -21,9 +23,23 @@ const TaskList = () => {
   }
 
   useEffect(() => {
+    getUser()
     getTasks()
   }, [])
 
+  const getUser = () => {
+    const url = 'https://playground.4geeks.com/todo/users/nicolas'
+    const options = {
+      method: "GET",
+      headers: { 'Accept': 'application/json' } 
+    }
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then(datos => setUser(datos.name))
+      .catch(error => console.log(error.message))
+  }
+  
 
   const agregarTarea = (task) => {
     const url = 'https://playground.4geeks.com/todo/todos/nicolas';
@@ -46,7 +62,7 @@ const TaskList = () => {
         setTareas([...tareas, datos]);
       })
       .catch(error => console.error('Error al agregar tarea:', error));
-      setCounter(counter + 1)
+      
   };
 
 
@@ -68,8 +84,34 @@ const TaskList = () => {
         }
       })
       .catch(error => console.error('Error al eliminar tarea:', error));
-      setCounter(counter - 1)
+      
   };
+
+  
+  const deletUser = () => {
+    
+    const url = "https://playground.4geeks.com/todo/users/nicolas";
+    const options = {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    fetch(url, options)
+      .then(response => {
+        if (response.status === 204) {
+          console.log('Usuario eliminado');
+        }
+      })
+      .catch(error => console.error('Error al eliminar tarea:', error));
+      
+  }
+
+  const deletall = () => {
+    deletUser()
+    getTasks()
+  }
 
 
   return (
@@ -78,14 +120,25 @@ const TaskList = () => {
         sendInput={agregarTarea}
       />
       <div className='task-list-container'>
-        {tareas.map(task => (
+        {tareas ? tareas.map(task => (
           <Task
             key={task.id}
             id={task.id}
             text={task.label}
             deleteTask={borrarTarea}
           />
-        ))}{tareas.length == 1 ? <h2>You Have 1 Pending Task</h2> :<h2>{`You Have ${tareas?.length || 0} Pending Tasks`}</h2> }
+        )) : <h3></h3>} { tareas ? <h2>{`You Have ${tareas?.length } Pending Tasks`}</h2> :<h2>You Have 0 Pending Tasks</h2> }
+
+
+        <div className='container d-flex justify-content-center'>
+          <div className='row '>
+          
+          <h3 className=''>Delete all tasks  <FaTrashAlt 
+        onClick={deletall}
+        /></h3> 
+       
+        </div>
+        </div>
         
       </div>
     </>
@@ -93,3 +146,5 @@ const TaskList = () => {
 }
 
 export default TaskList
+
+

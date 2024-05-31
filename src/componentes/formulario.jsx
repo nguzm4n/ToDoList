@@ -32,6 +32,7 @@ const Formulario = ({ sendInput }) => {
         placeholder='Type your Task'
         type='text'
         name='text'
+      
         />
     </form>
   )
